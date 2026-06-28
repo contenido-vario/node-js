@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>node.js</title>
+  <link rel="shortcut icon" href="/rt.ico" type="image/x-icon">
+  <link rel="stylesheet" crossorigin href="/assets/input-Dd-meHBQ.css">
+</head>
+
+<body class="container mx-auto w-5/6 pb-10">
+  <header id="title-block-header">
+    <h1 class="font-bold text-3xl text-red-700 my-4">
+      2. HTML - CSS+TailwindCSS - JS Vanilla+Astro.build</h1>
+  </header>
+  <main class="mb-8"> <!-- Astro -->
+
+  <p><b>Astro.build</b>: Es considerado el framework 'todo en uno'. Se basa en generar HTML estático y usar <b>Node.js</b> en el servidor solo cuando es estrictamente necesario.</p> 
+
+  <p><b>🎻 Filosofía Astro</b>: Astro actúa como el director de orquesta, mientras que el resto de frameworks o librerías del ecosistema son los músicos.</p>
+
+  <p>Para iniciar un proyecto con este stack, ejecutamos en la terminal:</p>
+
+  <p><code>pnpm create astro@latest</code></p>
+  
+  <p class="italic">El asistente te guiará con unas preguntas (nombre de la carpeta, inicializar Git, etc.). <mark>Cuando te pregunte si deseas instalar las dependencias con <b>pnpm</b>, selecciona <b>Sí</b></mark>.
+  </p>
+  <p>Para integrar Tailwind de forma automática, aprovechamos que Astro es nuestro director de orquesta y ejecutamos:</p>
+  <p><code>pnpm astro add tailwind</code></p>
+
+  <p>Astro descargará <code>tailwindcss</code>, configurará las herramientas y activará la integración de forma limpia en tu archivo <code>astro.config.mjs</code>.</p>
+
+  <p>Durante este proceso, Astro creará un archivo CSS global (normalmente en <code>src/styles/global.css</code>). Al abrirlo, verás la importación de <code>tailwind</code>:</p>
+
+  <p><code>@import "tailwindcss";</code></p>
+
+  <p>Puedes personalizar este archivo a tu gusto. Aquí tienes un ejemplo completo de configuración en la versión 4 de tailwind:</p>
+
+  <details class="pl-4">
+    <summary class="bg-white text-black">global.css</summary>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=global.css"></script>
+  </details>
+
+  <p>Para que estos estilos se apliquen en todo el sitio, importamos el archivo CSS en el Layout principal (<code>src/layouts/Layout.astro</code>):</p>
+
+  <details class="pl-4">
+    <summary class="bg-white text-black">src/layouts/Layout.astro</summary>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=Layout.astro"></script>
+  </details>
+
+  <p>Ahora, al trabajar en tus páginas (como <code>src/pages/index.astro</code>), tu código HTML quedará sumamente limpio al heredar toda la estructura del Layout:</p>
+
+  <h4>Comprobar que todo funciona</h4>
+
+  <details class="pl-4">
+    <summary class="bg-white text-black">index.astro</summary>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=index.astro"></script>
+  </details>
+
+  <p>Ejecuta tu servidor de desarrollo desde la terminal: <code>pnpm dev</code></p>
+
+  <h4>Agregar plugins de Tailwind desde Astro</h4>
+  
+  <p>Agregaremos dos plugins en esta oportunidad:</p>
+  <ul>
+    <li>
+      <p><a href="https://github.com/tailwindlabs/tailwindcss-forms" target="_blank" rel="noopener noreferrer"><code>@tailwindcss/forms</code></a>: Tailwind por defecto (Preflight)limpia y aplana los formularios para que no rompan tu diseño, pero toca estilizarlos casi desde cero. Este plugin, modifica automáticamente el estilo de los controles de formulario, permitiéndo cambiar sus colores o bordes usando clases simples de Tailwind de forma mucho más directa:</p>
+      <p>- Todos los inputs, selectores y textareas tienen un borde sutil, un sombreado ligero y esquinas redondeadas muy elegantes por defecto.</p>
+      <p>- Los checkbox y radio buttons se vuelven estilizable de forma nativa.</p>
+    </li>
+    <li>
+      <p><a href="https://github.com/jamiebuilds/tailwindcss-animate" target="_blank" rel="noopener noreferrer"><code>tailwindcss-animate</code></a>: añade decenas de clases listas para usar: desvanecimientos, deslizamientos, zooms y efectos de entrada/salida combinables.</p>
+    </li>
+  </ul>
+
+  <p><strong>Paso 1: </strong>Desde la terminal del proyecto Astro, añadimos los plugins como dependencias de desarrollo (-D) usando <code>pnpm</code>:</p>
+
+  <p><code>pnpm add -D @tailwindcss/forms tailwindcss-animate</code></p>
+
+  <p><strong>Paso 2: </strong> Abrimos nuestro archivo <code>src/styles/global.css</code> y registramos los plugins justo debajo de la importación principal de Tailwind utilizando la directiva <code>@plugin</code>. El bloque superior de <code>global.css</code> quedaría así:</p>
+
+  <details class="pl-4">
+    <summary class="bg-white text-black">global.css</summary>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=tailwind-plugins.css"></script>
+  </details>
+
+  <h4>Desplegar el proyecto en Netlify</h4>
+
+  <p><strong>Paso 1. </strong>Compilar el proyecto</p>
+  <p>El proceso es similar al Stack 1.</p>
+  <ul>
+    <li>
+      <p>Abre la terminal en tu editor (Visual Studio Code) y asegúrate de que tu servidor de desarrollo esté apagado (puedes presionar Ctrl + C para apagarlo)</p>
+    </li>
+    <li>
+      <p>Ejecuta el comando de producción:</p>
+      <p><code>pnpm build</code></p>
+    </li>
+    <li>
+      <p>Verás que en tu proyecto se crea (o se actualiza) la carpeta llamada <code>dist/</code> (el código de producción)</p>
+    </li>
+  </ul>
+  <p><strong>Paso 2. </strong>Subir el proyecto a Netlify</p>
+  <p><b>Netlify</b> tiene una herramienta específica que se llama <b>Netlify Drop</b>.</p>
+  <ul>
+    <li>
+      <p>Entra a <a href="app.netlify.com/drop" target="_blank" rel="noopener noreferrer">app.netlify.com/drop</a>.</p>
+      <p class="text-sm">No hace falta crear repositorio. Puedes arrastrar la carpeta <code>dist</code> incluso sin haber iniciado sesión (aunque si no te creas una cuenta, la web caduca en 24 horas. Si te registras con tu email, el proyecto se guarda para siempre).</p>
+    </li>
+    <li>
+      <p>Arrastra la carpeta <code>dist</code>, la plataforma lee el <code>index.html</code> que Astro generó dentro de ella, y te dará da la URL en 3 segundos.</p>
+    </li>
+  </ul>
+
+  <h4>¿Cómo gestionar múltiples proyectos en Netlify?</h4>
+  <p>La primera vez que arrastres la carpeta <code>dist</code>, la plataforma te creará un "<b>Proyecto 1</b>" con una URL aleatoria (que una vez registrado, puedes cambiar por algo como <b>mi-proyecto-astro.netlify.app</b>).</p>
+  <p>Cuando quieras subir tu segundo proyecto:</p>
+  <ul>
+    <li>Entra a tu panel de control (Dashboard) de Netlify. Verás la lista con tu primer proyecto.</li>
+    <li>Haz clic en un botón que dice <b>Add new site</b> (Añadir nuevo sitio) ➔ <b>Deploy manually</b> (Desplegar manualmente).</li>
+    <li>Te volverá a salir un recuadro similar al que usaste para el primer proyecto. Arrastra la nueva carpeta <code>dist</code> de tu segundo proyecto, y tendrás un <b>Proyecto 2</b> con una URL totalmente diferente.</li>
+  </ul>
+
+  <hr class="my-8">
+  
+  <h2>¿Donde vamos a partir de hoy?</h2>
+  
+  <p>Iremos estudiando todo lo que podemos hacer con Astro.</p> 
+  <p>Una vez conozcas <b>Astro</b>, pasaremos a <b>React</b> y esta vez haremos el despliegue en otra herramienta que se llama <b>Vercel</b>.</p>
+  </main>
+</body>
+</html>

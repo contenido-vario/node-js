@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>node.js</title>
+  <link rel="shortcut icon" href="/rt.ico" type="image/x-icon">
+  <link rel="stylesheet" crossorigin href="/assets/input-Dd-meHBQ.css">
+</head>
+
+<body class="container mx-auto w-5/6 pb-10">
+  <header id="title-block-header">
+    <h1 class="font-bold text-3xl text-red-700 my-4">
+      El rol de Node.js en el Frontend</h1>
+  </header>
+
+  <p class="mt-4">En el desarrollo Frontend moderno (con Astro, React, Vue, Angular, Svelte, etc.), la función de <b>Node.js</b> se limita al <b>entorno de desarrollo</b> (ordenador del desarrollador) y a los servidores de despliegue (CI/CD).</p>
+
+  <p>Básicamente, <b>Node.js</b> actúa como un motor de tus herramientas de trabajo. Sirve principalmente para tres cosas:</p>
+  <ol>
+    <li><b>Ejecutar Gestores de Paquetes</b> (usaremos pnpm): Permite instalar, actualizar y administrar librerías de terceros (como <b>Tailwind</b>, <b>Axios</b>, etc).</li>
+    <li><b>Brindar un Servidor de Desarrollo Local</b>: Al usar el comando <code>pnpm dev</code> desde la terminal, Node.js levanta un servidor web local para que puedas ver los cambios en tiempo real mientras programas gracias a herramientas como Vite y su sistema de reemplazo de módulos en caliente (<i>Hot Module Replacement</i>).</li>
+    <li><b>Ejecutar herramientas de construcción (Bundlers/Compiladores)</b>: Herramientas como <b>Vite</b> o <b>esbuild</b> necesitan <b>Node.js</b> para ejecutarse. Son las encargadas de tomar un código moderno (TypeScript, JSX, CSS avanzado) y transformarlo en archivos HTML, JS y CSS simples que cualquier navegador web estándar pueda entender.</li>
+  </ol>
+
+  <h2>pnpm como gestor de paquetes</h2>
+
+  <p class="mt-4">Si <b>Node.js</b> es el entorno de ejecución, <b>pnpm</b> es el administrador.</p>
+  <ul>
+    <li><b>Node.js</b> es como el sistema de producción de una fábrica.</li>
+    <li><b>pnpm</b> es como el gerente que aprovisiona y gestiona los insumos de la fábrica.</li>
+  </ul>
+  
+  <h3>¿Por qué <code>pnpm</code>?</h3>
+
+  <p class="mt-4">En la actualidad (2026) <code>pnpm</code> tiene importantes ventajas sobre otros gestores tradicionales como <code>npm</code>  o <code>yarn</code>:</p>
+  <ul>
+    <li><b>Velocidad y Espacio</b> (El almacén global): A diferencia de <b>npm</b>, que duplica los archivos en la carpeta <b>node_modules</b> de cada proyecto, <b>pnpm</b> guarda todos los paquetes en un único lugar de tu disco duro (un almacén global). Así, si 10 proyectos usan <b>React</b>, <b>pnpm</b> solo lo descarga una vez y crea enlaces (<i>hard links</i>) en cada proyecto. Esto ahorra gigabytes de espacio en el disco duro del programador.</li>
+    <li><b>Estructura estricta</b>: <b>pnpm</b> evita que uses librerías que no has declarado explícitamente en el <code>package.json</code>. No declararlas causa un problema común en <b>npm</b> conocido como <i>phantom dependencies</i> (dependencias fantasmas).</li>
+  </ul>
+
+  <h3>Comandos esenciales de <code>pnpm</code></h3>
+  <ul>
+    <li><code>pnpm install</code>: instala todas las dependencias declaradas de un proyecto.</li>
+    <li><code>pnpm add [paquete] </code>:Agrega una nueva librería al proyecto para producción.</li>
+    <li><code>pnpm add -D [paquete] </code>: Agrega una librería exclusiva para desarrollo (compiladores, linters, etc.).</li>
+    <li><code>pnpm dev</code>: arranca un servidor de desarrollo local.</li>
+    <li><code>pnpm dlx</code>: ejecuta binarios temporales sin instalarlos (como <code>npx</code>).</li>
+    <!-- <li><code></code></li> -->
+  </ul>
+
+  <h2 class="mt-8">El stack de FrontEnd</h2>
+  <p class="mt-4">Un stack de frontend es el conjunto de lenguajes, frameworks y herramientas que utilizamos para construir una interfaz web. En este curso iremos escalando de forma guiada para conformar nuestro stack:</p>
+
+  <ul>
+    <li>1. HTML + CSS (TailwindCSS v4) + JS Vanilla + Vite</li>
+    <li>2. HTML + CSS (TailwindCSS v4) + JS Vanilla+Astro.build</li>
+    <li>3. HTML + CSS (TailwindCSS v4) + JS Vanilla+Astro.build+React</li>
+  </ul>
+
+  <p>Entre proyecto y proyecto, practicaremos con Git, una herramienta de control de versiones que es diferente a Github, que es un repositorio.</p>
+
+</body>
+</html>
