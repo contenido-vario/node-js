@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>node.js</title>
   <link rel="shortcut icon" href="./rt.ico" type="image/x-icon">
-  <link rel="stylesheet" crossorigin href="./assets/input-Dd-meHBQ.css">
+  <link rel="stylesheet" crossorigin href="./assets/input-DiCHXuXg.css">
 </head>
 
 <body class="container mx-auto w-5/6 pb-10">
@@ -16,115 +16,65 @@
     </h1>
   </header>
   <main class="mb-8"> <!-- Tailwind -->
-
+  <section>
   <p><b>Tailwind CSS</b> es un framework de CSS de "clases de utilidad" (<i>utility-first</i>). En lugar de ofrecer componentes prefabricados (como botones ya diseñados), proporciona clases de bajo nivel que se aplican directamente en el HTML. Es el estándar de diseño actual.</p>
 
   <p>En el pasado hemos ido utilizando <b>Tailwind css</b> enlazado desde un cdn. Ahora lo instalaremos directamente en el proyecto para aprovechar todo su potencial.
 
-  <p>Lo instalaremos haciendo uso de <code>Vite</code>, un servidor de desarrollo y empaquetador (bundler) que agiliza la creación de aplicaciones web. Instalamos Vite y su plugin oficial para Tailwind v4:</p>
+  <p>Lo instalaremos haciendo uso de <code class="sw">Vite</code>, un servidor de desarrollo, compilador y empaquetador (bundler) que agiliza la creación de aplicaciones web. Los pasos del proceso, son los siguientes:</p>
   
-  <p><code>pnpm add -D vite @tailwindcss/vite</code></p>
-
-  <p>Ahora debemos configurarlo. Crea un archivo en la raíz llamado <code>vite.config.js</code> para decirle a Vite que procese nuestro Tailwind (copia el código):</p>
-
-  <blockquote>
-    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=vite.config.js"></script>
-  </blockquote>
+  <p><strong>Paso 1:</strong> Creamos una carpeta para el nuevo proyecto y ejecutamos en la terminal <code>pnpm init</code>. (<kbd>Ctrl</kbd> <kbd>Ñ</kbd> para acceder) .<br>Esto inicia el proyecto <code class="sw">Node.js</code>. y genera el archivo <code class="sw">package.json</code>.</p>
   
-  <p>Como último paso, deberás configurar los accesos directos en el <code>package.json</code>. Para ello, modifica los scripts para habilitar Vite.</p>
+  <p><strong>Paso 2: </strong>Desde la terminal ejecutamos
+  <code>pnpm add -D vite @tailwindcss/vite glob</code> para instalar el compilador <code class="sw">Vite</code>, <code class="sw">Tailwind v4</code> y el motor de búsqueda de archivos, <code class="sw">glob</code>.</p> 
 
-  <blockquote>
-    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=package.json"></script>
-  </blockquote>
+  <p><strong>Paso 3: </strong>Creamos el archivo <code class="sw">vite.config.js</code>. Copia el siguiente código del <code class="sw">Gist</code> para que <code class="sw">Vite</code> detecte todas tus páginas HTML automáticamente.</p>
+
+  <details open>
+    <summary class="bg-white text-black my-4">vite.config.js</summary>
+    <script src="https://gist.github.com/contenido-vario/e345f61e49426f5325a92a9fb522cb74.js?File=vite.config.js"></script>
+  </details>
+
+  <p><strong>Paso 4: </strong>Creamos la estructura de carpetas y archivos (<code class="sw">src/</code>, <code class="sw">public/</code>, <code class="sw">index.html</code>, etc.) siguiendo el esquema visual que se presenta a continuación.</p>
+
+  <figure class="mt-4 mb-8">
+    <img src="./assets/carpetas-BB6hLC5m.png" alt="estructura carpetas">
+    <figcaption class="text-sm text-center">fig.1-Esquema de carpetas Stack 1</figcaption>
+  </figure>
+
+  <p><strong>Paso 5: </strong>Arrancamos el servidor local en el ordenador para poder ver los cambios en tiempo real.<br>
+  Para ello ejecutamos <code>pnpm dev</code> en la terminal</p>
+
+  <p><strong>Paso 6: </strong>Ejecutamos <code>pnpm build</code> en la terminal para compilar el proyecto cuando esté terminado. <code class="sw">Vite</code> empaquetará y optimizará todo dentro de la carpeta <code class="sw">dist/</code>.</p>
+
+  <p><strong>Paso 6: </strong>Desplegar en <code class="sw">GitHub</code>. Sube todo lo que hay dentro de <code class="sw">dist/</code> a tu repositorio de GitHub y activa <code class="sw">GitHub Pages</code> como ya sabes hacerlo, para mostrar tu web.</p>
+  </details>
+  </section>
 
 
+  <section>
+  <h2>El archivo <code class="sw">input.css</code></h2>
 
-  <h4>¿Cómo trabajar con Tailwind v4?</h4>
+  <p>En este stack, se trabaja con un único archivo <code class="sw">input.css</code> donde se deberá colocar todo el <code class="sw">css</code> del site.</p>
 
-  <p>En Tailwind v4, toda la configuración se realiza directamente mediante CSS nativo. Para ello creamos un archivo <code>input.css</code> en la carpeta <code>./src/</code> e importamos el framework en la primera línea. Debajo de ella, podemos extender nuestro diseño usando las nuevas directivas:</p>
-
-  <p>Dentro de éste archivo css, y debajo de la línea <code>@import "tailwindcss";</code>, agregamos las nuevas directivas de Tailwind v4.</p>
-  <ul>
-    <li><code>@theme</code>: Se usa para crear o extender variables del sistema de diseño (colores, fuentes, animaciones).</li>
-    <li><code>@layer base</code>: Para modificar los estilos globales de etiquetas HTML nativas (<code>body</code>, <code>h1</code>, etc.)</li>
-    <li><code>@utility</code>: Reemplaza al antiguo <code>@layer components</code> para crear clases personalizadas y reutilizables.</li>
-  </ul>
-
-  <h4>Instalar plugins a Tailwind v4 (Ejemplo: Tailwind Typography)</h4>
-
-  <p>Un plugin es una herramienta que extiende las capacidades de Tailwind añadiendo nuevas clases automáticas. El mejor ejemplo es <a href="https://tailwindcss-typography.vercel.app/" target="_blank" rel="noopener noreferrer"><code>@tailwindcss/typography</code></a>, un plugin oficial ideal para dar formato automático a bloques de texto largos (como artículos de un blog o archivos Markdown) usando una sola clase llamada <code>prose</code>.</p>
-
-  <p>Para instalarlo en Tailwind v4, seguimos estos dos pasos:</p>
-
+  <p>En caso de querer agregar un plugin de <code class="sw">css</code>, solo se tienen que hacer dos cosas:</p>
   <ol>
-    <li>
-      <p><b>Instalamos el paquete desde la terminal:</b></p>
-      <p>Descargamos el plugin como una dependencia de desarrollo usando <code>pnpm</code>:</p>
-      <p><code>pnpm add -D @tailwindcss/typography</code></p>
-    </li>
-    <li>
-      <p><b>Lo registramos directamente en el archivo CSS</b>:</p>
-      <p>En la versión 4 de tailwind, los plugins se registran directamente en el archivo <code>input.css</code> usando la directiva <code>@plugin</code>:</p>
-      <blockquote>
-        <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=prose.html"></script>
-      </blockquote>
-    </li>
+    <li>Registrar el paquete desde la terminal con la instrucción <code>pnpm add -D [nombre-plugin]</code></li>
+    <li>Registrar el plugin en el archivo <code class="sw">input.css</code> con la directiva <code class="sw">@plugin</code>.</li>
   </ol>
 
-  <h4>¿Cómo usarlo en el HTML?</h4>
+  <p>Agregaremos el plugin <code class="sw">Tailwind CSS Typography</code> para ejemplificar el proceso. Este <a href="https://github.com/tailwindlabs/tailwindcss-typography" target="_blank" rel="noopener noreferrer">plugin</a> permite agregar estilos tipográficos a <code class="sw">Tailwind</code>.</p>
 
-  <p>Una vez importado, puedes envolver cualquier texto nativo dentro de un contenedor con la clase <code>prose</code> (o <code>prose-invert</code> si estás usando un fondo oscuro) y <code>Tailwind</code> se encargará de estilizar los títulos, párrafos, listas y enlaces de forma automática:</p>
+  <p>Para instalarlo, ejecutamos en la terminal: <code>pnpm add -D @tailwindcss/typography</code></p>
 
-  <blockquote>
-    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=tailwind-plugin.css"></script>
-  </blockquote>
+  <p>Y luego lo registramos en el archivo <code class="sw">input.css</code>. A continuación se puede ver un ejemplo completo de la configuración de Tailwind en el archivo.</p>
 
-  <h4>Comprobar que todo funciona</h4>
-
-  <p>Crea tu estructura de archivos, enlaza tu archivo CSS procesado en el <code>index.html</code> e inicia el entorno desde la terminal con <code>pnpm dev</code>.</p>
-
-  <h4>Desplegar el proyecto en GitHub (método manual tradicional)</h4>
-  
-  <p><strong>Paso 1:</strong> Compilar tu código en local (Generar el CSS final)</p>
-
-  <p>Antes de subir nada, necesitamos que Node.js y Tailwind generen el archivo CSS real que el navegador puede leer.</p>
-
-  <ul>
-    <li>
-      <p>Abre la terminal en tu editor (Visual Studio Code) y asegúrate de que tu servidor de desarrollo esté apagado (puedes presionar Ctrl + C para apagarlo)</p>
-    </li>
-    <li>
-      <p>Ejecuta el comando de producción:</p>
-      <p><code>pnpm build</code></p>
-    </li>
-    <li>
-      <p>Verás que en tu proyecto se crea (o se actualiza) una carpeta llamada <code>dist/</code> que contiene un archivo llamado <code>output</code>.css. ¡Ese es el CSS optimizado y minificado de Tailwind v4!</p>
-    </li>
-  </ul>
-  <p><strong>Paso 2:</strong> Crear el repositorio en GitHub</p>
-  <p>Crea un nuevo repositorio y configuralo de la siguiente manera. Una vez listo, haz clic en el botón <b>Create Repository</b>:</p>
-  <ul>
-    <li><b>Repository name</b>: dale un nombre corto al repositorio en minúsculas preferiblemente</li>
-    <li><b>Public / Private:</b> Selecciónalo como <b>Public</b> (Obligatorio para que GitHub Pages sea gratis).</li>
-    <li><b>Opciones iniciales</b>: Deja todo lo demás desmarcado (sin README, sin .gitignore).</li>
-  </ul>
-  <p><strong>Paso 3:</strong> Subir los archivos manualmente</p>
-  <p>Busca un enlace que dice: "<b>uploading an existing file</b>" (subir un archivo existente). Se abrirá una zona donde puedes arrastrar tus archivos.</p>
-  <blockquote class="bg-amber-100">
-    <p>⚠️ Vamos a arrastrar solo lo que el navegador necesita y lo que configura nuestro proyecto.</p>
-    <p class="font-bold"><mark>NUNCA</mark> arrastres la carpeta node_modules (pesa demasiado y romperá la subida).</p>
-  </blockquote>
-  <p>Arrastra hacia la ventana de GitHub los siguientes archivos y carpetas:</p>
-  <ul>
-    <li>Tu archivo <b>index.html</b> (debe quedar en la raíz).</li>
-    <li>Tu archivo <b>package.json</b>.</li>
-    <li>Tu carpeta <b>dist</b> (que creamos en el Paso 1, y que contiene el CSS final).</li>
-    <li>Tus archivos de JavaScript si tuvieras (script.js, etc.).</li>
-  </ul>
-  <p><strong>Paso 4:</strong> Encender GitHub Pages</p>
-  <p>Recuerda hacerlo como siempre: <code>Settings > Pages > Deploy from a branch</code> y seleccionar <code>main</code> (o <code>master</code>) donde dice <code>none</code>.</p>
-  <p>Deja la carpeta en <code>/ (root)</code> y haz clic en <code>Save</code> (Guardar).</p>
-
+  <details class="pl-4" open>
+    <summary class="bg-white text-black py-4">input.css</summary>
+    <script src="https://gist.github.com/contenido-vario/d16170231a806bd1c91c2e2af4b6170a.js?file=input.css"></script>
   </details>
-</body>
+
+  </section>
+
+</body> 
 </html>
