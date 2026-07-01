@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>node.js</title>
-  <link rel="shortcut icon" href="./rt.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./rt.ico" type="image/x-icon">
+
   <link rel="stylesheet" crossorigin href="./assets/input-BeMHxnkB.css">
 </head>
 
@@ -109,7 +110,8 @@
         </li>
         <li> <!--4-->
           <p>Ve hasta el final de ese archivo de texto que se abrió, pega esta línea en una nueva línea después del <code>@echo off</code>:<br>
-          <code>@fnm env --use-on-cd --shell cmd | call</code></p>
+          <code>:: Configuración segura para inicializar fnm en Cmder<br>
+FOR /f "tokens=*" %%z IN ('fnm env --use-on-cd --shell cmd') DO CALL %%z</code></p>
         </li>
         <li> <!--5-->
           <p>Guarda el archivo (<code>Ctrl G</code> o selecciona <b>Archivo > Guardar</b>), cierra el bloc de notas y cierra <b>Cmder</b>.</p>
